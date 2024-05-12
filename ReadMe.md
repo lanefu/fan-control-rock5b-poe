@@ -22,7 +22,7 @@ wget https://raw.githubusercontent.com/armbian/linux-rockchip/rk-6.1-rkr1/arch/a
 dtc -O dtb -o rk3588-pwm8-m0.dtbo -b 0 -@ rk3588-pwm8-m0.dts
 
 # copy and update prefix to match armbian default of `rockchip-rk3588'
-cp rk3588-wm8-m0.dtbo /boot/dtb/rockchip/overlay/rockchip-rk3588-pwm8-m0.dtbo
+cp rk3588-pwm8-m0.dtbo /boot/dtb/rockchip/overlay/rockchip-rk3588-pwm8-m0.dtbo
 
 # enable overlay in /boot/armbianEnv.txt -- assumes no other overlays exist
 # you may want to do this via armbian-config now instead
