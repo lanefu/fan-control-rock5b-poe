@@ -1,7 +1,8 @@
 /*
 MIT License
 
-Copyright (c) 2022 Nick Peng
+Copyright (c) 2022 Nick Peng, Original Work
+Copyright (c) 2024 Lane Jennison, POE Hat Changes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,14 +40,15 @@ SOFTWARE.
 int pidfile_fd = 0;
 int pwmchip_id = -1;
 int pwmchip_gpio_id = 0;
-int pwm_period = 10000;
+int pwm_period = 4000000;
 int fan_mode = 0;
 
 #define DEFAULT_PID_PATH "/run/fan-control.pid"
 #define DEFAULT_CONF_PATH "/etc/fan-control.json"
 
-#define FAN_PWM_PATH "/sys/devices/platform/fd8b0010.pwm/pwm"
+#define FAN_PWM_PATH "/sys/devices/platform/febe0000.pwm/pwm"
 #define TEMP_PATH "/sys/class/thermal/thermal_zone0/temp"
+#define FAN_PWM_POLARITY "inversed"
 
 struct temp_map_struct
 {
@@ -229,7 +231,7 @@ int init_pwm_gpio_by_ids(int chipId, int pwmId)
         goto do_unexport;
     }
 
-    ret = write_pwmchip_pwm_value(chipId, pwmId, "polarity", "normal");
+    ret = write_pwmchip_pwm_value(chipId, pwmId, "polarity", FAN_PWM_POLARITY);
     if (ret < 0)
     {
         printf("Failed to export GPIO, %s\n", strerror(errno));
