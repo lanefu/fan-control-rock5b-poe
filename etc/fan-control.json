@@ -1,7 +1,7 @@
 {
-    "pwmchip": -1,
+    "pwmchip": 1,
     "gpio": 0,
-    "pwm-period": 10000,
+    "pwm-period": 4000000,
     "temp-map": [
         {
             "temp": 40,
